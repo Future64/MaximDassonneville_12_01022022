@@ -1,0 +1,15 @@
+.dashboardPage {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 170px;
+    height: auto;
+    margin: 20px;
+}

@@ -1,0 +1,19 @@
+.mainNavBar {
+    color: white;
+    text-decoration: none;
+    outline: none;
+    width: 80vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.linkHeader,
+.linkProfil,
+.linkReglages,
+.linkCommunaute {
+    color: white;
+    text-decoration: none;
+    outline: none;
+    font-weight: bold;
+}
