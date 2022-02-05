@@ -16,4 +16,12 @@
     text-decoration: none;
     outline: none;
     font-weight: bold;
+    font-size: 20px;
+}
+
+.linkHeader:hover,
+.linkProfil:hover,
+.linkReglages:hover,
+.linkCommunaute:hover {
+    opacity: 85%;
 }

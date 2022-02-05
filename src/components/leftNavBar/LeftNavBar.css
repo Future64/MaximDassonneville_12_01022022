@@ -1,0 +1,25 @@
+.leftNavBar {
+    position: relative;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 320px;
+}
+
+.picto {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.picto img {
+    margin-top: 10%;
+}
+
+.picto:active {
+    opacity: 85%;
+}

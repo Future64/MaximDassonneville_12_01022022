@@ -1,18 +1,18 @@
 import React from "react"
 import './LeftNavBar.css'
+import meditation from "../../assets/Meditation.png"
+import musculation from "../../assets/Musculation.png"
+import natation from "../../assets/natation.png"
+import velo from "../../assets/Velo.png"
 
 const LeftNavBar = () => {
-    const meditation = "../../assets/Meditation.png"
-    const musculation = "../../assets/Musculation.png"
-    const natation = "../../assets/natation.png"
-    const velo = "../../assets/Velo.png"
 
     const pictoArray = [meditation, natation, velo, musculation ]
     return <div className="leftNavBar">
         {pictoArray.map(picto => {
-            return <div className="picto">
+            return <button className="picto">
             <img src={picto} alt="picto"></img>
-            </div>})
+            </button>})
             }
     </div>;
 }
