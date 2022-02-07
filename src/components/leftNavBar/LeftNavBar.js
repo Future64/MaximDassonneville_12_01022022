@@ -11,8 +11,8 @@ const LeftNavBar = () => {
     const pictoArray = [meditation, natation, velo, musculation]
     return <div className="leftNavBar">
         {pictoArray.map(picto => {
-            return <button className="picto">
-                <Picto src={picto} />
+            return <button className="picto" key={`button-${picto}`}>
+                <Picto src={picto} key={`picto-${picto}`}/>
                 {/* <img src={picto} alt="picto"></img> */}
             </button>
         })

@@ -41,6 +41,9 @@
  }
  
  .box-Linechart {
+     display: flex;
+     justify-content: center;
+     align-items: center;
      width: 32%;
      height: 78%;
      background-color: #FF0000;

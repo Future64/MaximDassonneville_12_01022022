@@ -14,7 +14,7 @@
     /* position: absolute; */
     width: 60px;
     height: 60px;
-    background: #FF0000;
+    background: transparent;
     mix-blend-mode: normal;
     opacity: 0.07;
     border-radius: 6px;
@@ -24,7 +24,9 @@
     align-items: center;
 }
 
-.box-picto img {
+img {
+    /* width: 60px;
+    height: 60px; */
     z-index: 10;
 }
 
