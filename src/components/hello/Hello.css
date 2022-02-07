@@ -1,0 +1,20 @@
+.container-hello {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.container-hello h1 {
+    font-size: 48px;
+}
+
+.container-hello h2 {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: -20px;
+}
+
+.container-hello span {
+    color: #FF0000;
+}

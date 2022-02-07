@@ -1,0 +1,17 @@
+.recharts-responsive-container {
+    /* position: absolute;
+    top: 200px;
+    left: 300px;
+    background-color: aqua; */
+    z-index: 8;
+}
+
+
+/* .recharts-layer .recharts-polar-angle-axis-ticks {
+    color: white;
+    margin: 10px;
+} */
+
+.recharts-wrapper {
+    position: relative;
+}

@@ -1,0 +1,13 @@
+.boxChart {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 200px;
+    left: 300px;
+    background-color: #282D30;
+    padding: 10px;
+    border-radius: 8px;
+    width: 270px;
+    height: 255px;
+}

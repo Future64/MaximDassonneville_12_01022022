@@ -1,6 +1,78 @@
-.dashboardPage {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
+ .dashboardPage {
+     width: 100vw;
+     height: 100vh;
+ }
+ 
+ .container-mainSection {
+     position: absolute;
+     left: 100px;
+     width: 94.3%;
+     height: 93vh;
+     display: flex;
+     justify-content: flex-start
+ }
+ 
+ .sectionChart {
+     position: relative;
+     left: 80px;
+     top: 5%;
+     width: 62%;
+     height: 88%;
+ }
+ 
+ .container-BarChart {
+     position: absolute;
+     top: 28%;
+     width: 100%;
+     height: 35%;
+     background-color: #FBFBFB;
+     border-radius: 5px;
+ }
+ 
+ .container-miniChart {
+     position: absolute;
+     top: 65%;
+     width: 100%;
+     height: 35%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     border-radius: 5px;
+ }
+ 
+ .box-Linechart {
+     width: 32%;
+     height: 78%;
+     background-color: #FF0000;
+     border-radius: 5px;
+ }
+ 
+ .box-Radarchart {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 32%;
+     height: 78%;
+     background-color: #282D30;
+     border-radius: 5px;
+ }
+ 
+ .box-Radialchart {
+     width: 32%;
+     height: 78%;
+     background-color: #FBFBFB;
+     border-radius: 5px;
+ }
+ 
+ .container-keyInfo {
+     position: absolute;
+     right: 20px;
+     top: 29.5%;
+     width: 30%;
+     height: 60%;
+     /* background-color: grey; */
+     border-radius: 5px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+ }
