@@ -16,8 +16,13 @@ import lipideIcon from "../../assets/lipide-icon.png"
 
 const Dashboard = () => {
   // const pictoKeyInfoArray = [meditation, natation, velo, musculation]
-  const keyInfo = ["Calories", "Proteines", "Glucides", "Lipides"]
-  const icons = [calorieIcon, proteineIcon, glucideIcon, lipideIcon]
+  const infoCard = [
+    {apport:'Calories', icon:calorieIcon, type:"kCal", data:1.930},
+    {apport:'Proteines', icon:proteineIcon, type:"g", data:155},
+    {apport:'Glucides', icon:glucideIcon, type:"g", data:290},
+    {apport:'Lipides', icon:lipideIcon, type:"g", data:50}
+  ]
+
   
 
   // icons.map(icon => console.log(icon))
@@ -45,14 +50,14 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="container-keyInfo">{
-        keyInfo.map((item) =>  {
-          return <CardKeyInfo 
-            src={icons.forEach(icon => icon)} 
-            keyInfo={"150g"} 
-            description={item}
+        infoCard.map(item =>  (
+           <CardKeyInfo 
+            src={item.icon} 
+            keyInfo={`${item.data}${item.type}`} 
+            description={item.apport}
             key={item}
           />
-        })}
+        ))}
       </div>
     </section>
   </section>)
