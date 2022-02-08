@@ -41,14 +41,14 @@ const data = [
     },
 ];
 
- const MyRadarChart = () => {
+const MyRadarChart = () => {
     return (
-        <ResponsiveContainer width={270} height={250} >
-            <RadarChart  cx="50%" cy="50%" outerRadius="80%" data={data} margin={{top:20,right:20,bottom:20,left:20}}>
+        <ResponsiveContainer width="100%" height="100%" >
+            <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
                 <PolarGrid gridType={"polygon"} />
-                <PolarAngleAxis  tickLine={false} axisLine={true} dataKey="subject" stroke="#FFFFFF" />
+                <PolarAngleAxis tickLine={false} axisLine={true} dataKey="subject" stroke="#FFFFFF" />
                 {/* <PolarRadiusAxis /> */}
-                <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+                <Radar name="Mike" dataKey="A" stroke="transparent" fill="rgba(255, 1, 1, 2)" fillOpacity={0.6} />
             </RadarChart>
         </ResponsiveContainer>
     )

@@ -6,6 +6,7 @@ import MyRadarChart from "../../components/myRadarChart/MyRadarChart"
 import MyLineChart from "../../components/myLineChart/MyLinechart";
 import MyBarChart from "../../components/myBarchart/MyBarChart";
 import CardKeyInfo from "../../components/cardKeyInfo/CardKeyInfo";
+import MyScoreChart from "../../components/myScoreChart/MyScoreChart";
 import "./Dashboard.css"
 import meditation from"../../assets/Meditation.png"
 import calorieIcon from "../../assets/calories-icon.png"
@@ -39,7 +40,7 @@ const Dashboard = () => {
             <MyRadarChart />
           </div>
           <div className="box-Radialchart">
-            {/* <MyRadarChart /> */}
+            <MyScoreChart />
           </div>
         </div>
       </div>

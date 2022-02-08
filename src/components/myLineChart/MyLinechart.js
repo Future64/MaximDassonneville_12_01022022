@@ -1,4 +1,4 @@
-import { LineChart, Line, Tooltip, XAxis } from "recharts";
+import { LineChart, Line, Tooltip, XAxis, ResponsiveContainer } from "recharts";
 import ReactDOM from "react-dom";
 import React, { useState } from "react";
 import "./MyLineChart.css"
@@ -19,7 +19,7 @@ const MyLineChart = () => {
     // console.log(hoveredData);
     if (hoveredData && hoveredData.activePayload) {
       const hoveredX = hoveredData.activePayload[0].payload.name;
-      const index = data.findIndex(d => d.name );
+      const index = data.findIndex(d => d.name);
       const percentage = ((data.length - index - 1) * 100) / (data.length - 1);
 
       setPerc(100 - percentage);
@@ -31,32 +31,35 @@ const MyLineChart = () => {
   };
 
   return (
-    <LineChart
-      width={320}
-      height={320}
-      data={data}
-      onMouseMove={onMouseMove}
-      onMouseOut={onMouseOut}
-    >
-      <defs>
-        <linearGradient id="colorUv" x1="0%" y1="0" x2="100%" y2="0">
-          <stop offset="0%" stopColor="blue" />
-          <stop offset={`${perc}%`} stopColor="blue" />
-          <stop offset={`${perc}%`} stopColor="red" />
-          <stop offset={`${100}%`} stopColor="red" />
-        </linearGradient>
-      </defs>
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="white"
-        strokeWidth={3}
-        dot={false}
-        activeDot={false}
-      />
-      <XAxis tickLine={false} axisLine={false} dataKey="name" stroke="white"/>
-      <Tooltip />
-    </LineChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart
+        width={320}
+        height={320}
+        data={data}
+        onMouseMove={onMouseMove}
+        onMouseOut={onMouseOut}
+      >
+        <defs>
+          <linearGradient id="colorUv" x1="0%" y1="0" x2="100%" y2="0">
+            <stop offset="0%" stopColor="blue" />
+            <stop offset={`${perc}%`} stopColor="blue" />
+            <stop offset={`${perc}%`} stopColor="red" />
+            <stop offset={`${100}%`} stopColor="red" />
+          </linearGradient>
+        </defs>
+        <Line
+          type="monotone"
+          dataKey="pv"
+          stroke="white"
+          strokeWidth={3}
+          dot={false}
+          activeDot={false}
+        />
+        <XAxis tickLine={false} axisLine={false} dataKey="name" stroke="white" />
+        <Tooltip />
+      </LineChart>
+
+    </ResponsiveContainer>
   );
 };
 
