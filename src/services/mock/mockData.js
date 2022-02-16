@@ -1,4 +1,4 @@
-const USER_MAIN_DATA = [{
+export const USER_MAIN_DATA = [{
         id: 12,
         userInfos: {
             firstName: 'Mick',
@@ -30,7 +30,7 @@ const USER_MAIN_DATA = [{
     }
 ]
 
-const USER_ACTIVITY = [{
+export const USER_ACTIVITY = [{
         userId: 12,
         sessions: [{
                 day: '2020-07-01',
@@ -111,7 +111,7 @@ const USER_ACTIVITY = [{
 ]
 
 
-const USER_AVERAGE_SESSIONS = [{
+export const USER_AVERAGE_SESSIONS = [{
         userId: 12,
         sessions: [{
                 day: 1,
@@ -178,7 +178,7 @@ const USER_AVERAGE_SESSIONS = [{
 ]
 
 
-const USER_PERFORMANCE = [{
+export const USER_PERFORMANCE = [{
         userId: 12,
         kind: {
             1: 'cardio',
@@ -251,12 +251,3 @@ const USER_PERFORMANCE = [{
         ]
     }
 ]
-
-
-
-module.exports = {
-    USER_MAIN_DATA,
-    USER_ACTIVITY,
-    USER_AVERAGE_SESSIONS,
-    USER_PERFORMANCE
-}

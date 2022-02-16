@@ -9,7 +9,7 @@ import lipideIcon from "../../assets/lipide-icon.png"
 const CardKeyInfo = (props) => {
     let iconsProps = props.src
     let iconFiltered = new Set(iconsProps)
-    console.log(iconFiltered);
+    // console.log(iconFiltered);
     return <div className="container-card">
         <div className="box-picto">
             <Picto src={props.src} />
