@@ -39,7 +39,7 @@ const Dashboard = () => {
 
 
 
-  // console.log(dataActivity);
+  // console.log(userAverageSessionsDataAPIMocked);
   
   // user Key Data 
   let [dataCalories, setDataCalories] = useState(userMainDataAPIMocked.keyData.calorieCount)
@@ -65,17 +65,17 @@ const Dashboard = () => {
           <div className="sectionChart">
             <Hello data={userMainDataAPIMocked}/>
             <div className="container-BarChart">
-              <MyBarChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked } performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+              <MyBarChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked } averageSession={userAverageSessionsDataAPIMocked}  performance={userPerformanceDataAPIMocked}/>
             </div>
             <div className="container-miniChart">
               <div className="box-Linechart">
-                <MyLineChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+                <MyLineChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} averageSession={userAverageSessionsDataAPIMocked}  performance={userPerformanceDataAPIMocked}/>
               </div>
               <div className="box-Radarchart">
-                <MyRadarChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+                <MyRadarChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} averageSession={userAverageSessionsDataAPIMocked}  performance={userPerformanceDataAPIMocked}/>
               </div>
               <div className="box-Radialchart">
-                <MyScoreChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+                <MyScoreChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} averageSession={userAverageSessionsDataAPIMocked}  performance={userPerformanceDataAPIMocked}/>
               </div>
             </div>
           </div>

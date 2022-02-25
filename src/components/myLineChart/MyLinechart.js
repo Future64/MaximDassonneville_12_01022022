@@ -15,24 +15,41 @@ const data = [
 ];
 
 const MyLineChart = (props) => {
+  let dataAverageSessions = []
+  const objForSessions = (daysArray, sessionLength) => {
+    let activity = {
+      day: daysArray,
+      sessionLength: sessionLength,
+    }
+    return activity
+  }
+  const daysArray = ["L", "M", "M", "J", "V", "S", "D"]
+
+  for(let i = 0; i < props.averageSession.sessions.length; i++) {
+    let obj = objForSessions(daysArray[i], props.averageSession.sessions[i].sessionLength)
+    dataAverageSessions.push(obj)
+  }
+
+
   const [perc, setPerc] = useState(0);
   const onMouseMove = hoveredData => {
     // console.log(hoveredData);
-    if (hoveredData && hoveredData.activePayload) {
-      const hoveredX = hoveredData.activePayload[0].payload.name;
-      const index = data.findIndex(d => d.name);
-      const percentage = ((data.length - index - 1) * 100) / (data.length - 1)
+    // if (hoveredData && hoveredData.activePayload) {
+    //   const hoveredX = hoveredData.activePayload[0].payload.day;
+    //   const index = dataAverageSessions.findIndex(d => d.day);
+    //   const percentage = ((dataAverageSessions.length - index - 1) * 100) / (dataAverageSessions.length - 1)
 
-      setPerc(100 - percentage);
-    }
+    //   setPerc(100 - percentage);
+    // }
   };
 
   const onMouseOut = () => {
-    setPerc(0);
+    // setPerc(0);
   };
 
 
-// console.log('props:', props)
+
+console.log(dataAverageSessions)
 
   return (
     <AverageSessionsChartContainer>
@@ -45,7 +62,7 @@ const MyLineChart = (props) => {
           <LineChart
             width={320}
             height={320}
-            data={data}
+            data={dataAverageSessions}
             onMouseMove={onMouseMove}
             onMouseOut={onMouseOut}
             outerRadius="75%"
@@ -61,7 +78,7 @@ const MyLineChart = (props) => {
             </defs> */}
             <Line
               type="monotone"
-              dataKey="pv"
+              dataKey="sessionLength"
               stroke="white"
               strokeWidth={2}
               dot={false}
@@ -71,7 +88,7 @@ const MyLineChart = (props) => {
                   r: 5,
                 }}
             />
-            <XAxis tickLine={false} axisLine={false} dataKey="name" stroke="white" />
+            <XAxis tickLine={false} axisLine={false} dataKey="day" stroke="white" />
             {/* <YAxis dataKey="sessionLength" domain={[0, "dataMax + 60"]} hide={true}/> */}
             <Tooltip 
               content={<CustomTooltip />}
