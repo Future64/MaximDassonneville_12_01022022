@@ -14,7 +14,7 @@ const data = [
   { name: "D", uv: 3490, pv: 4300, amt: 2100 }
 ];
 
-const MyLineChart = () => {
+const MyLineChart = (props) => {
   const [perc, setPerc] = useState(0);
   const onMouseMove = hoveredData => {
     // console.log(hoveredData);
@@ -30,6 +30,9 @@ const MyLineChart = () => {
   const onMouseOut = () => {
     setPerc(0);
   };
+
+
+// console.log('props:', props)
 
   return (
     <AverageSessionsChartContainer>

@@ -1,16 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Hello.css"
 import FetchFullData from "../../services/fetchData/FetchFullData"
 
 
-const Hello = () => {
-    const data = new FetchFullData()
-    let [firstname, setFirstname] = useState()
+const Hello = (props) => {
+    let [firstname, setFirstname] = useState(props.data.userInfos.firstName)
 
-    data.getFullData(12)
-    .then((response) => {
-        setFirstname(firstname = response.firstName)
-    })
 
     return <div className='container-hello'>
         <h1>Bonjour <span>{firstname}</span></h1>

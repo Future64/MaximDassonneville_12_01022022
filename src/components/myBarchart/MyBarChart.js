@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components"
 import "./MyBarChart.css"
 import {
@@ -13,70 +13,26 @@ import {
   Legend
 } from "recharts";
 
-const data = [
-  {
-    name: "1",
-    uv: 69,
-    pv: 72,
-    amt: 2400
-  },
-  {
-    name: "2",
-    uv: 75,
-    pv: 70,
-    amt: 2210
-  },
-  {
-    name: "3",
-    uv: 74,
-    pv: 69,
-    amt: 2290
-  },
-  {
-    name: "4",
-    uv: 69,
-    pv: 76,
-    amt: 2000
-  },
-  {
-    name: "5",
-    uv: 78,
-    pv: 69,
-    amt: 2181
-  },
-  {
-    name: "6",
-    uv: 71,
-    pv: 70,
-    amt: 2500
-  },
-  {
-    name: "7",
-    uv: 73,
-    pv: 76,
-    amt: 2100
-  },
-  {
-    name: "8",
-    uv: 70,
-    pv: 75,
-    amt: 2181
-  },
-  {
-    name: "9",
-    uv: 71,
-    pv: 70,
-    amt: 2500
-  },
-  {
-    name: "10",
-    uv: 78,
-    pv: 69,
-    amt: 2100
-  }
-];
 
-const MyBarChart = () => {
+const MyBarChart = (props) => {
+
+  let dataActivity = []
+
+  const objForActivity = (count, kilo, calories) => {
+    let activity = {
+      day: count,
+      kg: kilo,
+      kCal: calories,
+    }
+    return activity
+  }
+
+  for(let i = 0; i < props.activity.sessions.length; i++) {
+    let count = i + 1
+    let obj = objForActivity(count, props.activity.sessions[i].kilogram, props.activity.sessions[i].calories)
+    dataActivity.push(obj)
+  }
+
   return (
     <MyBarChartContainer>
       <MyBarChartTitle>Activité quotidienne</MyBarChartTitle>
@@ -92,17 +48,17 @@ const MyBarChart = () => {
       </MyBarChartLegend>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          data={data}
+          data={dataActivity}
           margin={{ top: 80, right: 48, bottom: 32, left: 48 }}
           barGap={8}
           barCategoryGap="25%"
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" dy={16} tickLine={false} tick={{ fontSize: 14, fontWeight: 500 }} />
-          <YAxis orientation="right" axisLine={false} tickLine={false} domain={["dataMin - 1", "dataMax + 2"]} allowDecimals={false} dx={18} />
+          <XAxis dataKey="day" dy={16} tickLine={false} tick={{ fontSize: 14, fontWeight: 500 }} />
+          <YAxis orientation="right" axisLine={false} tickLine={false}  allowDecimals={false} dx={18} />
           <Tooltip cursor={{ fill: "rgba(0, 0, 0, 0.1)", }} content={<CustomTooltip />} />
-          <Bar dataKey="pv" fill="#282D30" radius={[50, 50, 0, 0]} maxBarSize={8} />
-          <Bar dataKey="uv" fill="#E60000" radius={[50, 50, 0, 0]} maxBarSize={8} />
+          <Bar dataKey="kg" fill="#282D30" radius={[50, 50, 0, 0]} maxBarSize={8} />
+          <Bar dataKey="kCal" fill="#E60000" radius={[50, 50, 0, 0]} maxBarSize={8} />
         </BarChart>
       </ResponsiveContainer>
     </MyBarChartContainer>
@@ -131,10 +87,10 @@ function CustomTooltip({ active, payload }) {
   return null;
 }
 
-//   CustomTooltip.propTypes = {
-//     active: PropTypes.bool,
-//     payload: PropTypes.array,
-//   };
+  // CustomTooltip.propTypes = {
+  //   active: PropTypes.bool,
+  //   payload: PropTypes.array,
+  // };
 
 const MyBarChartContainer = styled.div`
     position: relative;

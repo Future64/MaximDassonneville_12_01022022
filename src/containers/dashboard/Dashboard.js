@@ -1,4 +1,5 @@
-import  {useState, useEffect} from "react"
+import  {useState, useEffect, useContext} from "react"
+import { useParams } from "react-router-dom"
 import Header from "../../components/header/Header"
 import SideBar from "../../components/sideBar/SideBar"
 import Hello from "../../components/hello/Hello"
@@ -8,35 +9,44 @@ import MyBarChart from "../../components/myBarchart/MyBarChart"
 import CardKeyInfo from "../../components/cardKeyInfo/CardKeyInfo"
 import MyScoreChart from "../../components/myScoreChart/MyScoreChart"
 import "./Dashboard.css"
-import meditation from "../../assets/Meditation.png"
 import calorieIcon from "../../assets/calories-icon.png"
 import proteineIcon from "../../assets/protein-icon.png"
 import glucideIcon from "../../assets/glucide-icon.png"
 import lipideIcon from "../../assets/lipide-icon.png"
-import axios from 'axios';
-// import fetchFullData from "../../services/fetchData/FetchFullData"
+import DataContextProvider from "../../context/DataContext"
 import FetchFullData from "../../services/fetchData/FetchFullData"
+import USER_MAIN_DATA from "../../services/mock/mockData"
+import {getUserMainData, getUserPerformance, getAverageSession, getUserActivity} from "../../services/fetchData/DataFormater"
+
 
 
 
 const Dashboard = () => {
-  const data = new FetchFullData()
-  let [dataCalories, setDataCalories] = useState()
-  let [dataProteines, setDataProteines] = useState()
-  let [dataGlucides, setDataGlucides] = useState()
-  let [dataLipides, setDataLipides] = useState()
+  const params = useParams()
+
+  //DAta Mocked
+  let userMainDataAPIMocked = getUserMainData(USER_MAIN_DATA.USER_MAIN_DATA, params.id)
+  const userActivityDataAPIMocked = getUserActivity(USER_MAIN_DATA.USER_ACTIVITY, params.id)
+  const userAverageSessionsDataAPIMocked = getAverageSession(USER_MAIN_DATA.USER_AVERAGE_SESSIONS, params.id)
+  const userPerformanceDataAPIMocked = getUserPerformance(USER_MAIN_DATA.USER_PERFORMANCE, params.id)
 
 
-  data.getFullData(12)
-  .then((response) => {
-    setDataCalories(dataCalories = response.calories)
-    setDataProteines(dataProteines = response.proteines)
-    setDataGlucides(dataGlucides = response.glucides)
-    setDataLipides(dataLipides = response.lipides)
-  })
+  //DAta API
+  const userMainDataAPI = FetchFullData(params.id)[0].data
+  const userActivityDataAPI = FetchFullData(params.id)[1].data
+  const userAverageSessionsDataAPI = FetchFullData(params.id)[2].data
+  const userPerformanceDataAPI = FetchFullData(params.id)[3].data
 
 
-  // const pictoKeyInfoArray = [meditation, natation, velo, musculation]
+
+  // console.log(dataActivity);
+  
+  // user Key Data 
+  let [dataCalories, setDataCalories] = useState(userMainDataAPIMocked.keyData.calorieCount)
+  let [dataProteines, setDataProteines] = useState(userMainDataAPIMocked.keyData.proteinCount)
+  let [dataGlucides, setDataGlucides] = useState(userMainDataAPIMocked.keyData.carbohydrateCount)
+  let [dataLipides, setDataLipides] = useState(userMainDataAPIMocked.keyData.lipidCount)
+
   const infoCard = [
     { apport: 'Calories', icon: calorieIcon, type: "kCal", data: dataCalories },
     { apport: 'Proteines', icon: proteineIcon, type: "g", data: dataProteines },
@@ -46,40 +56,43 @@ const Dashboard = () => {
 
 
   return (
-    <section className="dashboardPage">
-      <Header />
-      <SideBar />
-      {/* <BoxChart /> */}
-      <section className="container-mainSection">
-        <div className="sectionChart">
-          <Hello />
-          <div className="container-BarChart">
-            <MyBarChart />
+    // <DataContextProvider>
+      <section className="dashboardPage">
+        <Header />
+        <SideBar />
+        {/* <BoxChart /> */}
+        <section className="container-mainSection">
+          <div className="sectionChart">
+            <Hello data={userMainDataAPIMocked}/>
+            <div className="container-BarChart">
+              <MyBarChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked } performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+            </div>
+            <div className="container-miniChart">
+              <div className="box-Linechart">
+                <MyLineChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+              </div>
+              <div className="box-Radarchart">
+                <MyRadarChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+              </div>
+              <div className="box-Radialchart">
+                <MyScoreChart mainData={userMainDataAPIMocked} activity={userActivityDataAPIMocked} performance={userAverageSessionsDataAPIMocked} averageSession={userPerformanceDataAPIMocked}/>
+              </div>
+            </div>
           </div>
-          <div className="container-miniChart">
-            <div className="box-Linechart">
-              <MyLineChart />
-            </div>
-            <div className="box-Radarchart">
-              <MyRadarChart />
-            </div>
-            <div className="box-Radialchart">
-              <MyScoreChart />
-            </div>
+          <div className="container-keyInfo">{
+            infoCard.map((item, index) => (
+              <CardKeyInfo
+                src={item.icon}
+                keyInfo={`${item.data}${item.type}`}
+                description={item.apport}
+                key={`${item.data}-${index}`}
+              />
+            ))}
           </div>
-        </div>
-        <div className="container-keyInfo">{
-          infoCard.map((item, index) => (
-            <CardKeyInfo
-              src={item.icon}
-              keyInfo={`${item.data}${item.type}`}
-              description={item.apport}
-              key={`${item.data}-${index}`}
-            />
-          ))}
-        </div>
+        </section>
       </section>
-    </section>)
+    // </DataContextProvider>
+  )
 }
 
 export default Dashboard
