@@ -39,7 +39,10 @@ const Dashboard = () => {
 
 
 
+  // console.log(userMainDataAPIMocked);
+  // console.log(userActivityDataAPIMocked);
   // console.log(userAverageSessionsDataAPIMocked);
+  // console.log(userPerformanceDataAPIMocked);
   
   // user Key Data 
   let [dataCalories, setDataCalories] = useState(userMainDataAPIMocked.keyData.calorieCount)
