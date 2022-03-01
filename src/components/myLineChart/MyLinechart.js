@@ -1,5 +1,6 @@
 import { LineChart, Line, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types"
 import styled from "styled-components";
 import React, { useState } from "react";
 import "./MyLineChart.css"
@@ -8,6 +9,13 @@ import "./MyLineChart.css"
 
 const MyLineChart = (props) => {
   let dataAverageSessions = []
+
+  /**
+   * Built objects's array to format data of Average Sessions with week's days 
+   * @param {Array} daysArray 
+   * @param {Number} sessionLength 
+   * @returns {Array}
+   */
   const objForSessions = (daysArray, sessionLength) => {
     let activity = {
       day: daysArray,
@@ -15,33 +23,29 @@ const MyLineChart = (props) => {
     }
     return activity
   }
+
+  // Week's days array 
   const daysArray = ["L", "M", "M", "J", "V", "S", "D"]
 
+  // Push data formated in dataAverageSessions
   for(let i = 0; i < props.averageSession.sessions.length; i++) {
     let obj = objForSessions(daysArray[i], props.averageSession.sessions[i].sessionLength)
     dataAverageSessions.push(obj)
   }
 
+  /**
+ * Built Tooltip's LineChart with time value
+ * @param {Boolean} active
+ * @param {Array} payload
+ * @returns {ReactElement |  null }
+ */
+function CustomTooltip({ active, payload }) {
+  if (active && payload) {
+    return <TooltipContainer>{`${payload[0].value} min`}</TooltipContainer>;
+  }
 
-  const [perc, setPerc] = useState(0);
-  const onMouseMove = hoveredData => {
-    // console.log(hoveredData);
-    // if (hoveredData && hoveredData.activePayload) {
-    //   const hoveredX = hoveredData.activePayload[0].payload.day;
-    //   const index = dataAverageSessions.findIndex(d => d.day);
-    //   const percentage = ((dataAverageSessions.length - index - 1) * 100) / (dataAverageSessions.length - 1)
-
-    //   setPerc(100 - percentage);
-    // }
-  };
-
-  const onMouseOut = () => {
-    // setPerc(0);
-  };
-
-
-
-
+  return null;
+}
 
   return (
     <AverageSessionsChartContainer>
@@ -55,19 +59,9 @@ const MyLineChart = (props) => {
             width={320}
             height={320}
             data={dataAverageSessions}
-            onMouseMove={onMouseMove}
-            onMouseOut={onMouseOut}
             outerRadius="75%"
-            margin={{ top: 20, right: 15, bottom: 14, left: 15 }}
+            margin={{ top: 0, right: 15, bottom: 15, left: 15 }}
           >
-            {/* <defs>
-              <linearGradient id="colorUv" x1="0%" y1="0" x2="100%" y2="0">
-                <stop offset="0%" stopColor="blue" />
-                <stop offset={`${perc}%`} stopColor="blue" />
-                <stop offset={`${perc}%`} stopColor="red" />
-                <stop offset={`${100}%`} stopColor="red" />
-              </linearGradient>
-            </defs> */}
             <Line
               type="monotone"
               dataKey="sessionLength"
@@ -81,12 +75,12 @@ const MyLineChart = (props) => {
                 }}
             />
             <XAxis tickLine={false} axisLine={false} dataKey="day" stroke="white" />
-            {/* <YAxis dataKey="sessionLength" domain={[0, "dataMax + 60"]} hide={true}/> */}
+            <YAxis dataKey="sessionLength" domain={[0, "dataMax + 50"]} hide={true}/>
             <Tooltip 
               content={<CustomTooltip />}
                 cursor={{
                   stroke: "rgba(0, 0, 0, 0.1)",
-                  strokeWidth: 32,
+                  strokeWidth: 52,
                 }}
             />
           </LineChart>
@@ -95,17 +89,18 @@ const MyLineChart = (props) => {
 
     </AverageSessionsChartContainer>
   );
-};
+}
 
+MyLineChart.propTypes = {
+  averageSession: PropTypes.object,
+}
 export default MyLineChart 
 
-function CustomTooltip({ active, payload }) {
-  if (active && payload) {
-    return <TooltipContainer>{`${payload[0].value} min`}</TooltipContainer>;
-  }
 
-  return null;
-}
+
+/* ---------------------------------- */
+/* -- Styles for styled-components -- */
+/* ---------------------------------- */
 
 const TooltipContainer = styled.p`
   padding: 0.5rem;
@@ -118,7 +113,7 @@ const AverageSessionsChartContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  ${'' /* background: transparent; */}
+  background: transparent;
 `;
 
 const AverageSessionsChartTitle = styled.h2`

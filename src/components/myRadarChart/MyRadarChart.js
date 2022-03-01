@@ -7,6 +7,13 @@ import './MyRadarChart.css'
 
 const MyRadarChart = (props) => {
     let dataPerf = []
+
+    /**
+     * Built objects's array to format data of performances with activities
+     * @param {Array} activity 
+     * @param {Number} value 
+     * @returns {Array}
+     */
     const objForSessions = (activity, value) => {
         let performance = {
         activity: activity,
@@ -14,14 +21,15 @@ const MyRadarChart = (props) => {
         }
         return performance
     }
+
+    // Activities array
     let ActivityArray = ['Intensité', 'Vitesse', 'Force', 'Endurence', 'Energie', 'Cardio']
 
+    // Push data formated in dataPerf
     for(let i = 0; i < props.performance.data.length; i++) {
         let obj = objForSessions(ActivityArray[i], props.performance.data[i].value)
         dataPerf.push(obj)
     }
-
-    // console.log(  props.performance.data);
 
     return (
         <ResponsiveContainer width="100%" height="100%" >
