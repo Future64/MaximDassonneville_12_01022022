@@ -1,10 +1,12 @@
-import "./BoxChart.css"
-import MyRadarChart from "../myRadarChart/MyRadarChart"
+import './BoxChart.css'
+import MyRadarChart from '../myRadarChart/MyRadarChart'
 
 const BoxChart = () => {
-    return <div className="boxChart">
-        <MyRadarChart />
+  return (
+    <div className="boxChart">
+      <MyRadarChart />
     </div>
+  )
 }
 
 export default BoxChart
