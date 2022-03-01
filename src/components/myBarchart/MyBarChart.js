@@ -1,6 +1,7 @@
 
-import React, {useState, useEffect} from "react";
+import React from "react";
 import styled from "styled-components"
+import PropTypes from "prop-types"
 import "./MyBarChart.css"
 import {
   ResponsiveContainer,
@@ -10,7 +11,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
 } from "recharts";
 
 
@@ -18,6 +18,13 @@ const MyBarChart = (props) => {
 
   let dataActivity = []
 
+  /**
+   * Built object to format data of activities
+   * @param {Number} count 
+   * @param {Number} kilo 
+   * @param {Number} calories 
+   * @returns {Object}
+   */
   const objForActivity = (count, kilo, calories) => {
     let activity = {
       day: count,
@@ -27,10 +34,37 @@ const MyBarChart = (props) => {
     return activity
   }
 
+  // Push data formated in dataActivity
   for(let i = 0; i < props.activity.sessions.length; i++) {
     let count = i + 1
     let obj = objForActivity(count, props.activity.sessions[i].kilogram, props.activity.sessions[i].calories)
     dataActivity.push(obj)
+  }
+
+  /**
+   * Customize tooltip 
+   * @param {Boolean} active
+   * @param {Array} payload
+   * @returns {Null}
+   */
+  function CustomTooltip({ active, payload }) {
+    if (active && payload) {
+      return (
+        <TooltipContainer>
+          <TooltipLine background="#282D30">
+            {`${payload[0].value} kg`}
+          </TooltipLine>
+          <TooltipLine background="#E60000">
+            {`${payload[1].value} kCal`}
+          </TooltipLine>
+        </TooltipContainer>
+      );
+    }
+    return null;
+  }
+  CustomTooltip.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.array,
   }
 
   return (
@@ -64,38 +98,20 @@ const MyBarChart = (props) => {
     </MyBarChartContainer>
   );
 }
+
+  MyBarChart.propTypes = {
+    activity: PropTypes.object.isRequired,
+  };
 export default MyBarChart
 
-// DailyActivityChart.propTypes = {
-//     userId: PropTypes.string.isRequired,
-//   };
 
-function CustomTooltip({ active, payload }) {
-  if (active && payload) {
-    return (
-      <TooltipContainer>
-        <TooltipLine background="#282D30">
-          {`${payload[0].value} kg`}
-        </TooltipLine>
-        <TooltipLine background="#E60000">
-          {`${payload[1].value} kCal`}
-        </TooltipLine>
-      </TooltipContainer>
-    );
-  }
-
-  return null;
-}
-
-  // CustomTooltip.propTypes = {
-  //   active: PropTypes.bool,
-  //   payload: PropTypes.array,
-  // };
+/* ---------------------------------- */
+/* -- Styles for styled-components -- */
+/* ---------------------------------- */
 
 const MyBarChartContainer = styled.div`
     position: relative;
     height: 100%;
-    ${'' /* background: ${styleVar.neutral100}; */}
   `;
 
 const MyBarChartTitle = styled.h2`
@@ -115,11 +131,11 @@ const MyBarChartLegend = styled.div`
     display: flex;
     position: absolute;
     top: 1.5rem;
-    right: 2rem;
+    right: 3rem;
     ${'' /* color: ${styleVar.neutral500}; */}
     @media (max-width: 1340px) {
       top: 1rem;
-      right: 1.5rem;
+      right: 3rem;
     }
   `;
 
@@ -149,5 +165,4 @@ const TooltipLine = styled.p`
     color: white;
     font-size: 0.7rem;
     font-weight: 500;
-    ${'' /* background: ${(props) => props.background}; */}
   `;
