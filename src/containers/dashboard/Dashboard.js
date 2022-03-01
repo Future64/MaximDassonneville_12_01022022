@@ -86,42 +86,23 @@ const Dashboard = () => {
         <div className="sectionChart">
           <Hello data={userMainDataAPIMocked} />
           <div className="container-BarChart">
-            <MyBarChart
-              mainData={userMainDataAPIMocked}
-              activity={userActivityDataAPIMocked}
-              averageSession={userAverageSessionsDataAPIMocked}
-              performance={userPerformanceDataAPIMocked}
-            />
+            <MyBarChart activity={userActivityDataAPIMocked} />
           </div>
           <div className="container-miniChart">
             <div className="box-Linechart">
-              <MyLineChart
-                mainData={userMainDataAPIMocked}
-                activity={userActivityDataAPIMocked}
-                averageSession={userAverageSessionsDataAPIMocked}
-                performance={userPerformanceDataAPIMocked}
-              />
+              <MyLineChart averageSession={userAverageSessionsDataAPIMocked} />
             </div>
             <div className="box-Radarchart">
-              <MyRadarChart
-                mainData={userMainDataAPIMocked}
-                activity={userActivityDataAPIMocked}
-                averageSession={userAverageSessionsDataAPIMocked}
-                performance={userPerformanceDataAPIMocked}
-              />
+              <MyRadarChart performance={userPerformanceDataAPIMocked} />
             </div>
             <div className="box-Radialchart">
-              <MyScoreChart
-                mainData={userMainDataAPIMocked}
-                activity={userActivityDataAPIMocked}
-                averageSession={userAverageSessionsDataAPIMocked}
-                performance={userPerformanceDataAPIMocked}
-              />
+              <MyScoreChart mainData={userMainDataAPIMocked} />
             </div>
           </div>
         </div>
         <div className="container-keyInfo">
           {infoCard.map((item, index) => (
+            //Built CardKeyInfo with infoCard object
             <CardKeyInfo
               src={item.icon}
               keyInfo={`${item.data}${item.type}`}
