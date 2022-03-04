@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import SideBar from '../../components/sideBar/SideBar'
@@ -16,6 +16,8 @@ import lipideIcon from '../../assets/lipide-icon.png'
 import DataContextProvider from '../../context/DataContext'
 import FetchFullData from '../../services/fetchData/FetchFullData'
 import USER_MAIN_DATA from '../../services/mock/mockData'
+import FetchService from '../../services/fetchService'
+import { getData } from '../../services/getData'
 import {
   getUserMainData,
   getUserPerformance,
@@ -25,6 +27,49 @@ import {
 
 const Dashboard = () => {
   const params = useParams()
+
+  const dataFromMock = {
+    mainData: getData(
+      '../dataMocked',
+      params.id.toString(),
+      'USER_MAIN_DATA.json'
+    )[0],
+    activity: getData(
+      '../dataMocked',
+      params.id.toString(),
+      'USER_ACTIVITY.json'
+    )[0],
+    averageSession: getData(
+      '../dataMocked',
+      params.id.toString(),
+      'USER_AVERAGE_SESSIONS.json'
+    )[0],
+    performance: getData(
+      '../dataMocked',
+      params.id.toString(),
+      'USER_PERFORMANCE.json'
+    )[0],
+  }
+
+  const dataFromApi = {
+    mainData: getData('http://localhost:3000/user', params.id.toString())[0]
+      .data,
+    activity: getData(
+      'http://localhost:3000/user',
+      params.id.toString(),
+      'activity'
+    )[0].data,
+    averageSession: getData(
+      'http://localhost:3000/user',
+      params.id.toString(),
+      'average-sessions'
+    )[0].data,
+    performance: getData(
+      'http://localhost:3000/user',
+      params.id.toString(),
+      'performance'
+    )[0].data,
+  }
 
   //DAta Mocked
   let userMainDataAPIMocked = getUserMainData(
@@ -50,11 +95,6 @@ const Dashboard = () => {
   const userAverageSessionsDataAPI = FetchFullData(params.id)[2].data
   const userPerformanceDataAPI = FetchFullData(params.id)[3].data
 
-  // console.log(userMainDataAPIMocked);
-  // console.log(userActivityDataAPIMocked);
-  // console.log(userAverageSessionsDataAPIMocked);
-  // console.log(userPerformanceDataAPIMocked);
-
   // user Key Data
   let [dataCalories, setDataCalories] = useState(
     userMainDataAPIMocked.keyData.calorieCount
@@ -77,7 +117,6 @@ const Dashboard = () => {
   ]
 
   return (
-    // <DataContextProvider>
     <section className="dashboardPage">
       <Header />
       <SideBar />
@@ -113,8 +152,6 @@ const Dashboard = () => {
         </div>
       </section>
     </section>
-    // </DataContextProvider>
   )
 }
-
 export default Dashboard

@@ -26,6 +26,7 @@ const MyBarChart = (props) => {
     let activity = {
       day: count,
       kg: kilo,
+      kCalFormat: calories / 7,
       kCal: calories,
     }
     return activity
@@ -56,7 +57,7 @@ const MyBarChart = (props) => {
             {`${payload[0].value} kg`}
           </TooltipLine>
           <TooltipLine background="#E60000">
-            {`${payload[1].value} kCal`}
+            {`${payload[1].payload.kCal} kCal`}
           </TooltipLine>
         </TooltipContainer>
       )
@@ -96,6 +97,7 @@ const MyBarChart = (props) => {
             tick={{ fontSize: 14, fontWeight: 500 }}
           />
           <YAxis
+            dataKey="kg"
             orientation="right"
             axisLine={false}
             tickLine={false}
@@ -113,7 +115,7 @@ const MyBarChart = (props) => {
             maxBarSize={8}
           />
           <Bar
-            dataKey="kCal"
+            dataKey="kCalFormat"
             fill="#E60000"
             radius={[50, 50, 0, 0]}
             maxBarSize={8}

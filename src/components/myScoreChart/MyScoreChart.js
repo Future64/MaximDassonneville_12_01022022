@@ -76,7 +76,7 @@ const MyScoreChart = (props) => {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={160} height={160}>
+      <PieChart width={100} height={100}>
         <Pie
           data={data}
           cx="50%"

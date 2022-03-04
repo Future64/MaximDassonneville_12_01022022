@@ -87,6 +87,11 @@ const MyLineChart = (props) => {
             axisLine={false}
             dataKey="day"
             stroke="white"
+            // dy={10}
+            tick={{
+              fontSize: 12,
+              fontWeight: 500,
+            }}
           />
           <YAxis
             dataKey="sessionLength"
