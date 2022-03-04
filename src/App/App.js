@@ -2,8 +2,8 @@ import React from "react"
 import { Routes, Route } from "react-router-dom"
 import './App.css';
 import DataContextProvider from "../context/DataContext"
-import Dashboard from '../containers/dashboard/Dashboard'
-import Home from "../containers/home/Home"
+import Dashboard from '../pages/dashboard/Dashboard'
+import Home from "../pages/home/Home"
 import Error404 from '../components/error404/Error404'
 
 
