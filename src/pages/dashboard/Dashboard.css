@@ -1,13 +1,13 @@
 .dashboardPage {
     width: 100vw;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .container-mainSection {
     position: absolute;
     left: 100px;
-    width: 94.3vw;
-    height: 93vh;
+    width: 88%;
+    height: 89vh;
     display: flex;
     justify-content: flex-start;
 }
@@ -15,7 +15,7 @@
 .sectionChart {
     position: relative;
     left: 80px;
-    top: 5%;
+    /* top: 5%; */
     width: 62%;
     height: 88%;
 }
@@ -70,7 +70,7 @@
 .container-keyInfo {
     position: absolute;
     right: 20px;
-    top: 29.5%;
+    top: 24.7%;
     width: 27%;
     height: 60%;
     /* background-color: grey; */
