@@ -1,8 +1,3 @@
-import fetchFullData from "./FetchFullData"
-import USER_MAIN_DATA from "../mock/mockData"
-
-
-
 const getUserMainData = (data, id) => {
     const userMainData = []
     userMainData.push(data)
@@ -16,8 +11,6 @@ const getUserMainData = (data, id) => {
     }
     return userMainDataMocked
 }
-
-
 
 const getUserPerformance = (data, id) => {
     const userPerformance = []
@@ -33,7 +26,6 @@ const getUserPerformance = (data, id) => {
     return userPerformanceMocked
 }
 
-
 const getAverageSession = (data, id) => {
     const userAverageSession = []
     userAverageSession.push(data)
@@ -47,7 +39,6 @@ const getAverageSession = (data, id) => {
     }
     return userAverageSessionMocked
 }
-
 
 const getUserActivity = (data, id) => {
     const userActivity = []
@@ -65,5 +56,9 @@ const getUserActivity = (data, id) => {
     return userActivityMocked
 }
 
-
-export { getUserMainData, getUserPerformance, getAverageSession, getUserActivity }
+export {
+    getUserMainData,
+    getUserPerformance,
+    getAverageSession,
+    getUserActivity,
+}

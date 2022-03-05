@@ -14,86 +14,84 @@ import proteineIcon from '../../assets/protein-icon.png'
 import glucideIcon from '../../assets/glucide-icon.png'
 import lipideIcon from '../../assets/lipide-icon.png'
 import DataContextProvider from '../../context/DataContext'
-import FetchFullData from '../../services/fetchData/FetchFullData'
-import USER_MAIN_DATA from '../../services/mock/mockData'
-import FetchService from '../../services/fetchService'
-import { getData } from '../../services/getData'
+import {
+  USER_MAIN_DATA,
+  USER_ACTIVITY,
+  USER_AVERAGE_SESSIONS,
+  USER_PERFORMANCE,
+} from '../../services/mock/mockData'
+import {
+  fetchMainData,
+  fetchActivity,
+  fetchAverageSession,
+  fetchPerformance,
+} from '../../services/fetchData/fetchApiService'
 import {
   getUserMainData,
   getUserPerformance,
   getAverageSession,
   getUserActivity,
-} from '../../services/fetchData/DataFormater'
+} from '../../services/fetchData/DataMockedFormater'
 
 const Dashboard = () => {
   const params = useParams()
 
-  const dataFromMock = {
-    mainData: getData(
-      '../dataMocked',
-      params.id.toString(),
-      'USER_MAIN_DATA.json'
-    )[0],
-    activity: getData(
-      '../dataMocked',
-      params.id.toString(),
-      'USER_ACTIVITY.json'
-    )[0],
-    averageSession: getData(
-      '../dataMocked',
-      params.id.toString(),
-      'USER_AVERAGE_SESSIONS.json'
-    )[0],
-    performance: getData(
-      '../dataMocked',
-      params.id.toString(),
-      'USER_PERFORMANCE.json'
-    )[0],
+  const [userMainData, setUserMainData] = useState([])
+  const [userActivity, setUserActivity] = useState([])
+  const [userAvergeSession, setUserAvergeSession] = useState([])
+  const [userPerformance, setUserPerformance] = useState([])
+
+  /**
+   * Store data from API
+   * @param {Number} id
+   */
+  const getFullDataFormat = async (id) => {
+    const responseMainData = await fetchMainData(id)
+    const responseActivity = await fetchActivity(id)
+    const responseAverageSession = await fetchAverageSession(id)
+    const responsePerformance = await fetchPerformance(id)
+    setUserMainData(responseMainData)
+    setUserActivity(responseActivity)
+    setUserAvergeSession(responseAverageSession)
+    setUserPerformance(responsePerformance)
   }
 
-  const dataFromApi = {
-    mainData: getData('http://localhost:3000/user', params.id.toString())[0]
-      .data,
-    activity: getData(
-      'http://localhost:3000/user',
-      params.id.toString(),
-      'activity'
-    )[0].data,
-    averageSession: getData(
-      'http://localhost:3000/user',
-      params.id.toString(),
-      'average-sessions'
-    )[0].data,
-    performance: getData(
-      'http://localhost:3000/user',
-      params.id.toString(),
-      'performance'
-    )[0].data,
-  }
+  useEffect(() => {
+    getFullDataFormat(params.id)
+  }, [])
+
+  //   console.log(userMainData)
+  //   console.log(userActivity)
+  //   console.log(userAvergeSession)
+  //   console.log(userPerformance)
 
   //DAta Mocked
-  let userMainDataAPIMocked = getUserMainData(
-    USER_MAIN_DATA.USER_MAIN_DATA,
-    params.id
-  )
-  const userActivityDataAPIMocked = getUserActivity(
-    USER_MAIN_DATA.USER_ACTIVITY,
-    params.id
-  )
+  const userMainDataAPIMocked = getUserMainData(USER_MAIN_DATA, params.id)
+  const userActivityDataAPIMocked = getUserActivity(USER_ACTIVITY, params.id)
   const userAverageSessionsDataAPIMocked = getAverageSession(
-    USER_MAIN_DATA.USER_AVERAGE_SESSIONS,
+    USER_AVERAGE_SESSIONS,
     params.id
   )
   const userPerformanceDataAPIMocked = getUserPerformance(
-    USER_MAIN_DATA.USER_PERFORMANCE,
+    USER_PERFORMANCE,
     params.id
   )
 
-  //DAta API
-  const userMainDataAPI = FetchFullData(params.id)[0].data
-  const userActivityDataAPI = FetchFullData(params.id)[1].data
-  const userAverageSessionsDataAPI = FetchFullData(params.id)[2].data
-  const userPerformanceDataAPI = FetchFullData(params.id)[3].data
+  const dataFromMock = {
+    mainData: userMainDataAPIMocked,
+    activity: userActivityDataAPIMocked,
+    averageSession: userAverageSessionsDataAPIMocked,
+    performance: userPerformanceDataAPIMocked,
+  }
+
+  const dataFromAPI = {
+    mainData: userMainData,
+    activity: userActivity,
+    averageSession: userAvergeSession,
+    performance: userPerformance,
+  }
+
+  console.log(dataFromAPI.activity)
 
   // user Key Data
   let [dataCalories, setDataCalories] = useState(
@@ -119,27 +117,27 @@ const Dashboard = () => {
   return (
     <section className="dashboardPage">
       <Header />
-      <SideBar />
-      {/* <BoxChart /> */}
+      <SideBar /> {/* <BoxChart /> */}{' '}
       <section className="container-mainSection">
         <div className="sectionChart">
-          <Hello data={userMainDataAPIMocked} />
+          <Hello data={userMainDataAPIMocked} />{' '}
           <div className="container-BarChart">
-            <MyBarChart activity={userActivityDataAPIMocked} />
-          </div>
+            <MyBarChart activity={userActivityDataAPIMocked} />{' '}
+          </div>{' '}
           <div className="container-miniChart">
             <div className="box-Linechart">
-              <MyLineChart averageSession={userAverageSessionsDataAPIMocked} />
-            </div>
+              <MyLineChart averageSession={userAverageSessionsDataAPIMocked} />{' '}
+            </div>{' '}
             <div className="box-Radarchart">
-              <MyRadarChart performance={userPerformanceDataAPIMocked} />
-            </div>
+              <MyRadarChart performance={userPerformanceDataAPIMocked} />{' '}
+            </div>{' '}
             <div className="box-Radialchart">
-              <MyScoreChart mainData={userMainDataAPIMocked} />
-            </div>
-          </div>
-        </div>
+              <MyScoreChart mainData={userMainDataAPIMocked} />{' '}
+            </div>{' '}
+          </div>{' '}
+        </div>{' '}
         <div className="container-keyInfo">
+          {' '}
           {infoCard.map((item, index) => (
             //Built CardKeyInfo with infoCard object
             <CardKeyInfo
@@ -148,9 +146,9 @@ const Dashboard = () => {
               description={item.apport}
               key={`${item.data}-${index}`}
             />
-          ))}
-        </div>
-      </section>
+          ))}{' '}
+        </div>{' '}
+      </section>{' '}
     </section>
   )
 }
