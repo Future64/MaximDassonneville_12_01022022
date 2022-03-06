@@ -4,17 +4,12 @@ import './Home.css'
 import { USER_MAIN_DATA } from '../../services/mock/mockData'
 // import FetchFullData from '../../services/fetchData/FetchFullData'
 
-const Home = () => {
+const Home = (props) => {
   const userMainData = []
 
   userMainData.push(USER_MAIN_DATA)
 
-  //   const AllUsersMainDataAPI = [
-  //     FetchFullData(12)[0].data,
-  //     FetchFullData(18)[0].data,
-  //   ]
-
-  // console.log(AllUsersMainDataAPI);
+  console.log(props)
 
   return (
     <div>
@@ -24,7 +19,8 @@ const Home = () => {
         alt="Logo SportSee"
       />
       <div className="mockedUserBox">
-        <h2> All mocked users </h2>{' '}
+        <h2> All mocked users </h2>
+        <button className="buttonHome">Switch</button>
         {userMainData.map((itemArray) =>
           itemArray.map((item) => (
             <Link to={`/dashboard/${item.id}`} key={`mockedUser-${item.id}`}>
@@ -34,13 +30,6 @@ const Home = () => {
           ))
         )}{' '}
       </div>{' '}
-      {/* <div className='ApiUserBox'>
-                                        <h2 className='titleAllApi'>All API users</h2>
-                                        {AllUsersMainDataAPI.map((item) =>
-                                            <Link to={`/dashboard/${item.id}`} key={`apiUser-${item.id}`}>
-                                                {`Api User ${item.id}`}
-                                            </Link>)}
-                                    </div> */}{' '}
     </div>
   )
 }

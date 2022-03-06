@@ -60,11 +60,6 @@ const Dashboard = () => {
     getFullDataFormat(params.id)
   }, [])
 
-  //   console.log(userMainData)
-  //   console.log(userActivity)
-  //   console.log(userAvergeSession)
-  //   console.log(userPerformance)
-
   //DAta Mocked
   const userMainDataAPIMocked = getUserMainData(USER_MAIN_DATA, params.id)
   const userActivityDataAPIMocked = getUserActivity(USER_ACTIVITY, params.id)
@@ -77,41 +72,54 @@ const Dashboard = () => {
     params.id
   )
 
+  //Store all mocked Data
   const dataFromMock = {
     mainData: userMainDataAPIMocked,
     activity: userActivityDataAPIMocked,
     averageSession: userAverageSessionsDataAPIMocked,
     performance: userPerformanceDataAPIMocked,
+    key: 'Mock',
   }
 
+  //Store all Data from API
   const dataFromAPI = {
     mainData: userMainData,
     activity: userActivity,
     averageSession: userAvergeSession,
     performance: userPerformance,
+    key: 'API',
   }
 
-  console.log(dataFromAPI.activity)
+  //Final data to transfer everything to the dashboard
+  let finalData = dataFromMock
 
-  // user Key Data
-  let [dataCalories, setDataCalories] = useState(
-    userMainDataAPIMocked.keyData.calorieCount
-  )
-  let [dataProteines, setDataProteines] = useState(
-    userMainDataAPIMocked.keyData.proteinCount
-  )
-  let [dataGlucides, setDataGlucides] = useState(
-    userMainDataAPIMocked.keyData.carbohydrateCount
-  )
-  let [dataLipides, setDataLipides] = useState(
-    userMainDataAPIMocked.keyData.lipidCount
-  )
+  console.log(finalData)
 
   const infoCard = [
-    { apport: 'Calories', icon: calorieIcon, type: 'kCal', data: dataCalories },
-    { apport: 'Proteines', icon: proteineIcon, type: 'g', data: dataProteines },
-    { apport: 'Glucides', icon: glucideIcon, type: 'g', data: dataGlucides },
-    { apport: 'Lipides', icon: lipideIcon, type: 'g', data: dataLipides },
+    {
+      apport: 'Calories',
+      icon: calorieIcon,
+      type: 'kCal',
+      data: finalData.mainData.keyData.calorieCount,
+    },
+    {
+      apport: 'Proteines',
+      icon: proteineIcon,
+      type: 'g',
+      data: finalData.mainData.keyData.proteinCount,
+    },
+    {
+      apport: 'Glucides',
+      icon: glucideIcon,
+      type: 'g',
+      data: finalData.mainData.keyData.carbohydrateCount,
+    },
+    {
+      apport: 'Lipides',
+      icon: lipideIcon,
+      type: 'g',
+      data: finalData.mainData.keyData.lipidCount,
+    },
   ]
 
   return (
@@ -120,19 +128,19 @@ const Dashboard = () => {
       <SideBar /> {/* <BoxChart /> */}{' '}
       <section className="container-mainSection">
         <div className="sectionChart">
-          <Hello data={userMainDataAPIMocked} />{' '}
+          <Hello data={finalData.mainData} />{' '}
           <div className="container-BarChart">
-            <MyBarChart activity={userActivityDataAPIMocked} />{' '}
+            <MyBarChart activity={finalData.activity} />{' '}
           </div>{' '}
           <div className="container-miniChart">
             <div className="box-Linechart">
-              <MyLineChart averageSession={userAverageSessionsDataAPIMocked} />{' '}
+              <MyLineChart averageSession={finalData.averageSession} />{' '}
             </div>{' '}
             <div className="box-Radarchart">
-              <MyRadarChart performance={userPerformanceDataAPIMocked} />{' '}
+              <MyRadarChart performance={finalData.performance} />{' '}
             </div>{' '}
             <div className="box-Radialchart">
-              <MyScoreChart mainData={userMainDataAPIMocked} />{' '}
+              <MyScoreChart mainData={finalData.mainData} />{' '}
             </div>{' '}
           </div>{' '}
         </div>{' '}
