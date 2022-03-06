@@ -96,6 +96,7 @@ const MyScoreChart = (props) => {
                   key={`cell-${value}`}
                   fill="#FBFBFB"
                   radius={[50, 50, 0, 0]}
+                  stroke="transparent"
                 />
               )
             }

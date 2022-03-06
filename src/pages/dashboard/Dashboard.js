@@ -95,6 +95,7 @@ const Dashboard = () => {
 
   console.log(finalData)
 
+  //Object to build <CardKeyInfo/> component
   const infoCard = [
     {
       apport: 'Calories',

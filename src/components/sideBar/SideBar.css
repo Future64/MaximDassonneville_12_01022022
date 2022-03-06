@@ -3,10 +3,18 @@
     left: 0px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     top: -95px;
     left: 0px;
     height: 100vh;
     width: 100px;
     background-color: black;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 5%;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    color: white;
+    margin-left: 40%;
 }
