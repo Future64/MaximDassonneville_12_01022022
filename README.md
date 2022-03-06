@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+![SportSee](https://user.oc-static.com/upload/2020/08/18/15977560509272_logo%20%285%29.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Develop an analytics Dashboard with React
 
-## Available Scripts
+### Project 12 OpenClassRooms
 
-In the project directory, you can run:
+Sportsee is an application for monitoring your physical activity with charts.
 
-### `npm start`
+## Prerequisites for install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- You need [Git](https://git-scm.com) to clone the repository
+- You need [Node](https://nodejs.org/en/) (v16.14.0) to run the npm commands
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Dependencies
 
-### `npm test`
+- [React](https://reactjs.org): v17.0.2
+- [React-router-dom](https://reactrouter.com/web/guides/quick-start): v6.2.1  
+  `$ npm install react-router-dom`
+- [Recharts](https://recharts.org/en-US): v2.1.8
+- `$ npm install recharts`
+- [Styled-components](https://styled-components.com/): v5.3.3  
+  `$ npm install --save styled-components`
+- [Axios](https://github.com/axios/axios): v0.25.0  
+  `$ npm install axios`
+- [Prop-types](https://www.npmjs.com/package/prop-types): v15.8.1  
+  `$ npm i prop-types`
+- Recommended text editor: [Visual Studio Code](https://code.visualstudio.com)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installing and launching Back-End
 
-### `npm run build`
+1. Clone the repository of SportSee back-end:  
+   `git clone https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard.git`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install all dependencies for Back-End:  
+   `npm install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Launch back-end on port 3000 (default port):  
+   `npm run start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installing and launching Front-End
 
-### `npm run eject`
+1. Clone the repository of SportSee front-end:  
+   `git clone https://github.com/Future64/MaximDassonneville_12_01022022`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install all dependencies for Front-End:  
+   `npm install`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Launch front-end:  
+   `npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Front-end URL `http://localhost:3001`.
+5. URL availables :  
+   `http://localhost:3001/user/12`  
+   `http://localhost:3001/user/18`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Currently only two users have been mocked. They have userId 12 and 18 respectively.
 
-## Learn More
+## Auteur
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Maxim Dassonneville](https://github.com/Future64)
