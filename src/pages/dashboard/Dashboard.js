@@ -126,27 +126,26 @@ const Dashboard = () => {
   return (
     <section className="dashboardPage">
       <Header />
-      <SideBar /> {/* <BoxChart /> */}{' '}
+      <SideBar />
       <section className="container-mainSection">
         <div className="sectionChart">
-          <Hello data={finalData.mainData} />{' '}
+          <Hello data={finalData.mainData} />
           <div className="container-BarChart">
-            <MyBarChart activity={finalData.activity} />{' '}
-          </div>{' '}
+            <MyBarChart activity={finalData.activity} />
+          </div>
           <div className="container-miniChart">
             <div className="box-Linechart">
-              <MyLineChart averageSession={finalData.averageSession} />{' '}
-            </div>{' '}
+              <MyLineChart averageSession={finalData.averageSession} />
+            </div>
             <div className="box-Radarchart">
-              <MyRadarChart performance={finalData.performance} />{' '}
-            </div>{' '}
+              <MyRadarChart performance={finalData.performance} />
+            </div>
             <div className="box-Radialchart">
-              <MyScoreChart mainData={finalData.mainData} />{' '}
-            </div>{' '}
-          </div>{' '}
-        </div>{' '}
+              <MyScoreChart mainData={finalData.mainData} />
+            </div>
+          </div>
+        </div>
         <div className="container-keyInfo">
-          {' '}
           {infoCard.map((item, index) => (
             //Built CardKeyInfo with infoCard object
             <CardKeyInfo
@@ -155,9 +154,9 @@ const Dashboard = () => {
               description={item.apport}
               key={`${item.data}-${index}`}
             />
-          ))}{' '}
-        </div>{' '}
-      </section>{' '}
+          ))}
+        </div>
+      </section>
     </section>
   )
 }
