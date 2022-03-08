@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from 'react'
+import { useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import SideBar from '../../components/sideBar/SideBar'
@@ -13,25 +13,12 @@ import calorieIcon from '../../assets/calories-icon.png'
 import proteineIcon from '../../assets/protein-icon.png'
 import glucideIcon from '../../assets/glucide-icon.png'
 import lipideIcon from '../../assets/lipide-icon.png'
-import DataContextProvider from '../../context/DataContext'
-import {
-  USER_MAIN_DATA,
-  USER_ACTIVITY,
-  USER_AVERAGE_SESSIONS,
-  USER_PERFORMANCE,
-} from '../../services/mock/mockData'
 import {
   fetchMainData,
   fetchActivity,
   fetchAverageSession,
   fetchPerformance,
 } from '../../services/fetchData/fetchApiService'
-import {
-  getUserMainData,
-  getUserPerformance,
-  getAverageSession,
-  getUserActivity,
-} from '../../services/fetchData/DataMockedFormater'
 
 const Dashboard = () => {
   const params = useParams()
@@ -54,32 +41,12 @@ const Dashboard = () => {
     setUserActivity(responseActivity)
     setUserAvergeSession(responseAverageSession)
     setUserPerformance(responsePerformance)
+    console.log(userMainData);
   }
 
   useEffect(() => {
     getFullDataFormat(params.id)
   }, [])
-
-  //DAta Mocked
-  const userMainDataAPIMocked = getUserMainData(USER_MAIN_DATA, params.id)
-  const userActivityDataAPIMocked = getUserActivity(USER_ACTIVITY, params.id)
-  const userAverageSessionsDataAPIMocked = getAverageSession(
-    USER_AVERAGE_SESSIONS,
-    params.id
-  )
-  const userPerformanceDataAPIMocked = getUserPerformance(
-    USER_PERFORMANCE,
-    params.id
-  )
-
-  //Store all mocked Data
-  const dataFromMock = {
-    mainData: userMainDataAPIMocked,
-    activity: userActivityDataAPIMocked,
-    averageSession: userAverageSessionsDataAPIMocked,
-    performance: userPerformanceDataAPIMocked,
-    key: 'Mock',
-  }
 
   //Store all Data from API
   const dataFromAPI = {
@@ -91,9 +58,9 @@ const Dashboard = () => {
   }
 
   //Final data to transfer everything to the dashboard
-  let finalData = dataFromMock
+  let finalData = dataFromAPI
 
-  console.log(finalData)
+  // console.log(userMainData)
 
   //Object to build <CardKeyInfo/> component
   const infoCard = [
