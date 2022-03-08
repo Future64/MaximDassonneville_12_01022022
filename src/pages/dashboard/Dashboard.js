@@ -41,6 +41,7 @@ const Dashboard = () => {
     setUserAvergeSession(responseAverageSession)
     const responsePerformance = await fetchPerformance(id)
     setUserPerformance(responsePerformance)
+    console.log(userMainData)
   }
 
   useEffect(() => {
