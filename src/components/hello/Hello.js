@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './Hello.css'
 
 const Hello = (props) => {
-  let [firstname, setFirstname] = useState(props.data.userInfos.firstName)
+  const [firstname, setFirstname] = useState(props.data.userInfos.firstName)
 
   return (
     <div className="container-hello">

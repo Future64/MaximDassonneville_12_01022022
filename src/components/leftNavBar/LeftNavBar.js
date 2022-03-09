@@ -11,10 +11,10 @@ const LeftNavBar = () => {
   return (
     <div className="leftNavBar">
       {pictoArray.map((picto) => {
+        // Built Button for each Picto in pictoArray
         return (
           <button className="picto" key={`button-${picto}`}>
             <Picto src={picto} key={`picto-${picto}`} />
-            {/* <img src={picto} alt="picto"></img> */}
           </button>
         )
       })}
