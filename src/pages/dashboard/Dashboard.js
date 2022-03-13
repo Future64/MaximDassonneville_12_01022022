@@ -23,10 +23,10 @@ import {
 const Dashboard = () => {
   const params = useParams()
 
-  const [userMainData, setUserMainData] = useState([])
-  const [userActivity, setUserActivity] = useState([])
-  const [userAvergeSession, setUserAvergeSession] = useState([])
-  const [userPerformance, setUserPerformance] = useState([])
+  const [userMainData, setUserMainData] = useState()
+  const [userActivity, setUserActivity] = useState()
+  const [userAvergeSession, setUserAvergeSession] = useState()
+  const [userPerformance, setUserPerformance] = useState()
 
   /**
    * Store data from API
