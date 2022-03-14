@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import SideBar from '../../components/sideBar/SideBar'
@@ -41,13 +41,11 @@ const Dashboard = () => {
     setUserAvergeSession(responseAverageSession)
     const responsePerformance = await fetchPerformance(id)
     setUserPerformance(responsePerformance)
-    console.log(userMainData)
   }
 
   useEffect(() => {
     getFullDataFormat(params.id)
   }, [])
-  console.log(userMainData)
 
   return (
     <section className="dashboardPage">

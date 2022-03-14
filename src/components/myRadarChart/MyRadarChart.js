@@ -1,16 +1,15 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Radar,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer,
 } from 'recharts'
 import './MyRadarChart.css'
 
-const MyRadarChart = (props) => {
+const MyRadarChart = ({ performance }) => {
   let dataPerf = []
 
   /**
@@ -38,8 +37,8 @@ const MyRadarChart = (props) => {
   ]
 
   // Push data formated in dataPerf
-  for (let i = 0; i < props.performance.data.length; i++) {
-    let obj = objForSessions(ActivityArray[i], props.performance.data[i].value)
+  for (let i = 0; i < performance.data.length; i++) {
+    let obj = objForSessions(ActivityArray[i], performance.data[i].value)
     dataPerf.push(obj)
   }
 

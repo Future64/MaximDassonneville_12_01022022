@@ -12,7 +12,7 @@ import {
   Tooltip,
 } from 'recharts'
 
-const MyBarChart = (props) => {
+const MyBarChart = ({ activity }) => {
   let dataActivity = []
 
   /**
@@ -33,12 +33,12 @@ const MyBarChart = (props) => {
   }
 
   // Push data formated in dataActivity
-  for (let i = 0; i < props.activity.sessions.length; i++) {
+  for (let i = 0; i < activity.sessions.length; i++) {
     let count = i + 1
     let obj = objForActivity(
       count,
-      props.activity.sessions[i].kilogram,
-      props.activity.sessions[i].calories
+      activity.sessions[i].kilogram,
+      activity.sessions[i].calories
     )
     dataActivity.push(obj)
   }
@@ -125,7 +125,6 @@ const MyBarChart = (props) => {
     </MyBarChartContainer>
   )
 }
-
 export default MyBarChart
 
 MyBarChart.propTypes = {

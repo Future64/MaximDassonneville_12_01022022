@@ -1,3 +1,6 @@
+import React from 'react'
+import styled from 'styled-components'
+import './MyLineChart.css'
 import {
   LineChart,
   Line,
@@ -6,13 +9,9 @@ import {
   YAxis,
   ResponsiveContainer,
 } from 'recharts'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import React, { useState } from 'react'
-import './MyLineChart.css'
 
-const MyLineChart = (props) => {
+const MyLineChart = ({ averageSession }) => {
   let dataAverageSessions = []
 
   /**
@@ -33,10 +32,10 @@ const MyLineChart = (props) => {
   const daysArray = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
 
   // Push data formated in dataAverageSessions
-  for (let i = 0; i < props.averageSession.sessions.length; i++) {
+  for (let i = 0; i < averageSession.sessions.length; i++) {
     let obj = objForSessions(
       daysArray[i],
-      props.averageSession.sessions[i].sessionLength
+      averageSession.sessions[i].sessionLength
     )
     dataAverageSessions.push(obj)
   }

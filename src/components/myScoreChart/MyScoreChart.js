@@ -3,7 +3,7 @@ import './MyScoreChart.css'
 import { PieChart, Cell, Pie, Label, ResponsiveContainer } from 'recharts'
 import PropTypes from 'prop-types'
 
-const MyScoreChart = (props) => {
+const MyScoreChart = ({ mainData }) => {
   /**
    * Test keyValue name and return userScore
    * @param {number} todayScore
@@ -12,7 +12,6 @@ const MyScoreChart = (props) => {
    */
   const formatScore = (todayScore, score) => {
     let userScore
-
     todayScore === undefined ? (userScore = score) : (userScore = todayScore)
 
     if (userScore === undefined) {
@@ -22,10 +21,7 @@ const MyScoreChart = (props) => {
   }
 
   // Store value of formatScore()
-  const scoreOriginValue = formatScore(
-    props.mainData.todayScore,
-    props.mainData.score
-  )
+  const scoreOriginValue = formatScore(mainData.todayScore, mainData.score)
 
   // Increase scoreOriginValue by 100
   const finalScore = scoreOriginValue * 100

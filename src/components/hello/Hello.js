@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import './Hello.css'
 
-const Hello = (props) => {
-  const [firstname, setFirstname] = useState(props.data.userInfos.firstName)
-
+const Hello = ({ data }) => {
   return (
     <div className="container-hello">
       <h1>
-        Bonjour <span>{firstname}</span>
+        Bonjour <span>{data.userInfos.firstName}</span>
       </h1>
       <h2>Félicitation ! Vous avez explosé vos objectifs hier 👏 </h2>
     </div>
