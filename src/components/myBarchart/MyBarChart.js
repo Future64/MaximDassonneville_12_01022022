@@ -158,7 +158,7 @@ const MyBarChartLegend = styled.div`
   position: absolute;
   top: 1.5rem;
   right: 3rem;
-  ${'' /* color: ${styleVar.neutral500}; */}
+
   @media (max-width: 1340px) {
     top: 1rem;
     right: 3rem;
