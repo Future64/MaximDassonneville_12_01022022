@@ -1,15 +1,22 @@
 .score {
     font-weight: 700;
     font-size: 1.2em;
-    fill: "#020203";
+    fill: '#020203';
 }
 
 .firstTxt {
     font-size: 0.9em;
-    fill: #A9A9A9;
+    fill: #a9a9a9;
 }
 
 .secondTxt {
-    font-size: "0.9em";
-    fill: #A9A9A9;
+    font-size: '0.9em';
+    fill: #a9a9a9;
+}
+
+.scoreLabel {
+    padding: 20px;
+    transform: translate(15%, 10%);
+    color: #000;
+    font-weight: 500;
 }

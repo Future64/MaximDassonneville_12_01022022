@@ -56,15 +56,17 @@ const MyScoreChart = ({ mainData }) => {
 
   /**
    * Built header title
-   * @param {object} viewBox
    * @returns { HTMLElement }
    */
-  const ScoreLabel = ({ viewBox }) => {
-    const { cx, cy } = viewBox
+  const ScoreLabel = () => {
     return (
       <>
-        <text x={cx - 80} y={cy - 95}>
-          <tspan className="titleScore">Score</tspan>
+        <text
+          textAnchor="middle"
+          dominantBaseline="middle"
+          className="scoreLabel"
+        >
+          Score
         </text>
       </>
     )
@@ -72,17 +74,17 @@ const MyScoreChart = ({ mainData }) => {
 
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={100} height={100}>
+      <PieChart>
         <Pie
           data={data}
           cx="50%"
           cy="50%"
           dataKey="value"
-          innerRadius={60}
-          outerRadius={75}
+          innerRadius="60%"
+          outerRadius="75%"
           startAngle={90}
           endAngle={450}
-          fill="#FFFFFF"
+          // fill="#FFFFFF"
         >
           {data.map((name, value) => {
             // Display graph score with data
@@ -91,18 +93,12 @@ const MyScoreChart = ({ mainData }) => {
                 <Cell
                   key={`cell-${value}`}
                   fill="#FBFBFB"
-                  radius={[50, 50, 0, 0]}
                   stroke="transparent"
                 />
               )
             }
             return (
-              <Cell
-                key={`cell-${value}`}
-                fill="#FF0000"
-                radius={[50, 50, 0, 0]}
-                cornerRadius="50%"
-              />
+              <Cell key={`cell-${value}`} fill="#FF0000" cornerRadius="50%" />
             )
           })}
           <Label content={<ScoreLabel />} />

@@ -29,7 +29,7 @@ const Dashboard = () => {
   const [userPerformance, setUserPerformance] = useState()
 
   /**
-   * Store data from API
+   * This function is used to fetch the datas from the API and stores it in the states
    * @param {Number} id
    */
   const getFullDataFormat = async (id) => {
