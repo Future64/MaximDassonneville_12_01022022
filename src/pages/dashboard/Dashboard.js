@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import SideBar from '../../components/sideBar/SideBar'
 import Hello from '../../components/hello/Hello'
@@ -22,6 +22,7 @@ import {
 
 const Dashboard = () => {
   const params = useParams()
+  const navigate = useNavigate()
 
   const [userMainData, setUserMainData] = useState()
   const [userActivity, setUserActivity] = useState()
@@ -44,9 +45,13 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    getFullDataFormat(params.id)
+    if(params.id == 12 || params.id == 18){
+      getFullDataFormat(params.id)
+    } else {
+      navigate("*")
+    }
   }, [])
-
+  
   return (
     <section className="dashboardPage">
       <Header />
