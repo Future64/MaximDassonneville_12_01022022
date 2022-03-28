@@ -51,11 +51,12 @@ Sportsee is an application for monitoring your physical activity with charts.
 . Front-end will launch at URL:
 `http://localhost:3001`.
 
-. URL availables in this project:  
+. URL availables in this project:
+ `http://localhost:3001`  
  `http://localhost:3001/user/12`  
  `http://localhost:3001/user/18`
 
-Currently only two users have been mocked. They have userId 12 and 18 respectively.
+Currently there are only users 12 and 18.
 
 ## Auteur
 
