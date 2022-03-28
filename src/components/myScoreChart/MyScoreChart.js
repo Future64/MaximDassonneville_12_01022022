@@ -84,7 +84,6 @@ const MyScoreChart = ({ mainData }) => {
           outerRadius="75%"
           startAngle={90}
           endAngle={450}
-          // fill="#FFFFFF"
         >
           {data.map((name, value) => {
             // Display graph score with data

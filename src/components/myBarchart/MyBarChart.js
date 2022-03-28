@@ -53,12 +53,12 @@ const MyBarChart = ({ activity }) => {
     if (active && payload) {
       return (
         <TooltipContainer>
-          <TooltipLine background="#282D30">
+          <ContentTooltip >
             {`${payload[0].value} kg`}
-          </TooltipLine>
-          <TooltipLine background="#E60000">
+          </ContentTooltip>
+          <ContentTooltip >
             {`${payload[1].payload.kCal} kCal`}
-          </TooltipLine>
+          </ContentTooltip>
         </TooltipContainer>
       )
     }
@@ -74,11 +74,11 @@ const MyBarChart = ({ activity }) => {
       <MyBarChartTitle>Activité quotidienne</MyBarChartTitle>
       <MyBarChartLegend>
         <LegendDetail>
-          <ColorBullet background="#282D30"></ColorBullet>
+          <LegendColor background="#282D30"></LegendColor>
           Poids (kg)
         </LegendDetail>
         <LegendDetail>
-          <ColorBullet background="#E60000"></ColorBullet>
+          <LegendColor background="#E60000"></LegendColor>
           Calories brûlées (kCal)
         </LegendDetail>
       </MyBarChartLegend>
@@ -169,13 +169,13 @@ const LegendDetail = styled.p`
   margin: 0 0 0 2rem;
 `
 
-const ColorBullet = styled.span`
+const LegendColor = styled.span`
   display: inline-block;
   width: 0.5rem;
   height: 0.5rem;
   margin: 0 0.5rem 0 0;
   border-radius: 50%;
-  background: ${(props) => props.background};
+  background: ${({background}) => background};
 `
 
 const TooltipContainer = styled.div`
@@ -185,7 +185,7 @@ const TooltipContainer = styled.div`
   margin-right: 50px;
 `
 
-const TooltipLine = styled.p`
+const ContentTooltip = styled.p`
   padding: 0.75rem;
   margin: 0;
   color: white;

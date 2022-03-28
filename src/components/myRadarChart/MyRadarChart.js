@@ -59,7 +59,7 @@ const MyRadarChart = ({ performance }) => {
           dy={4}
           tick={{ fontSize: 12, fontWeight: 500 }}
         />
-        {/* <PolarRadiusAxis /> */}
+
         <Radar
           name="Mike"
           dataKey="value"
